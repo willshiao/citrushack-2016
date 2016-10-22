@@ -2,7 +2,9 @@
   <nav class="navbar navbar-light bg-faded">
     <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">&#9776;</button>
     <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar">
-      <a class="navbar-brand" href="#">{{siteName}}</a>
+      <a class="navbar-brand" href="#">
+      <h1 class="display-4">{{siteName}}</h1>
+      </a>
       <ul class="nav navbar-nav pull-xs-right float-xs-right">
         <li class="nav-item">
           <span class="">Current Group: <span id="room">None</span>
@@ -19,21 +21,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <div class="form-group row">
-          <label for="room-ID-input" class="col-xs-2 col-form-label">Room ID:</label>
-          <div class="col-xs-6">
-            <input class="form-control" type="text" id="room-ID-input">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="room-ID-input">Room ID:</label>
+            <input class="form-control" id="room-ID-input">
           </div>
-          <div class="col-xs-2">
-            <button type="submit" class="btn btn-primary">Join Room</button>
-          </div>
-        </div>
+          <button type="submit" class="btn btn-primary">Join Room</button>
+        </form>
         <hr class="m-y-2">
-        <button type="submit" class="btn btn-primary center-block">Create Room</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="room-ID-input">Room name:</label>
+            <input class="form-control" id="room-ID-input">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Room</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
