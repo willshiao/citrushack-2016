@@ -9,11 +9,13 @@ const bodyParser = require('body-parser');
 const config = require('config');
 
 const passport = require('./lib/passport');
+const configuredSession = require('./lib/session').session;
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
 
 const app = express();
+app.io = require('./lib/socket');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +27,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')(config.get('session')));
+app.use(configuredSession);
 
 app.use(passport.initialize());
 app.use(passport.session());
