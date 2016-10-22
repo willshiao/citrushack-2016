@@ -12,6 +12,16 @@ footer {
   color: white;
 }
 
-.btn-primary {
+.btn {
   background: #663399;
+}
+
+.btn-outline {
+  border-color: #663399;
+}
+
+#interface-background {
+  background: white;
+  margin: 15px;
+  padding: 15px;
 }
