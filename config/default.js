@@ -7,7 +7,7 @@ const config = {
     resave: false,
   },
   db: {
-    url: 'mongodb://localhost/citrus-hack',
+    url: 'mongodb://localhost:27017/citrus-hack',
   }
 };
 
