@@ -7,9 +7,12 @@ const logger = require('../lib/logger');
 const User = require('../models/User');
 const passport = require('../lib/passport');
 const h = require('../lib/helpers');
+const isAuthenticated = require('../lib/middleware').isAuthenticated;
+const notAuthenticated = require('../lib/middleware').notAuthenticated;
 
 /* GET home page. */
-router.get('/', (req, res) => {
+router.get('/', notAuthenticated, (req, res) => {
+  console.log('User', req.user);
   res.render('pages/index', {
     title: 'Express',
     siteName: config.get('siteName'),
@@ -52,8 +55,13 @@ router.post('/register', (req, res, next) => {
   });
 });
 
-router.get('/app', (req, res) => {
-  res.render('pages/interface', {title: config.get('siteName')});
+router.get('/app', isAuthenticated, (req, res) => {
+  console.log(req.user);
+  res.render('pages/interface', {
+    title: config.get('siteName'),
+    scriptFile: 'app.js',
+    roomId: req.user.room,
+  });
 });
 
 module.exports = router;

@@ -8,6 +8,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const userSchema = new Schema({
   username: String,
   password: String,
+  room: String,
 });
 
 userSchema.plugin(passportLocalMongoose);

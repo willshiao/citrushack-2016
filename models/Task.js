@@ -15,6 +15,7 @@ const taskSchema = new Schema({
   }],
   description: String,
   deleted: {type: Boolean, default: false},
+  roomSlug: String,
 });
 
 module.exports = mongoose.model('Task', taskSchema);
