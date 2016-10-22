@@ -14,6 +14,7 @@ const taskSchema = new Schema({
     completed: Boolean,
   }],
   description: String,
+  deleted: {type: Boolean, default: false},
 });
 
 module.exports = mongoose.model('Task', taskSchema);
