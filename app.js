@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('config');
 const hbs = require('hbs');
+const mongoose = require('mongoose');
+mongoose.connect(config.get('db').url);
 
 const passport = require('./lib/passport');
 const configuredSession = require('./lib/session').session;
