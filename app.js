@@ -8,14 +8,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('config');
 const hbs = require('hbs');
+const Promise = require('bluebird');
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 mongoose.connect(config.get('db').url);
 
 const passport = require('./lib/passport');
 const configuredSession = require('./lib/session').session;
 
 const routes = require('./routes/index');
-const users = require('./routes/users');
 
 const app = express();
 app.io = require('./lib/socket');
@@ -40,7 +41,6 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

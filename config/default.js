@@ -1,6 +1,7 @@
 'use strict';
 
 const config = {
+  siteName: 'Collaborooms',
   session: {
     secret: 'JHvK2kgv0BWTdYWl7DN1',
     saveUninitialized: false,
