@@ -2,38 +2,44 @@
   <h1 class="display-4">Collaborooms</h1>
   <p class="lead">A collaborative solution to the stresses of dorm living.</p>
   <hr class="m-y-2">
-  <div class="form-group row">
-    <label for="register-username-input" class="col-xs-2 col-form-label">Username:</label>
-    <div class="col-xs-4">
-      <input class="form-control" type="text" id="register-username-input">
+  <form id="register-form">
+    <div class="form-group row">
+      <label for="register-username-input" class="col-xs-2 col-form-label">Username:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="text" id="register-username-input" name="username">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="register-password-input" class="col-xs-2 col-form-label">Password:</label>
-    <div class="col-xs-4">
-      <input class="form-control" type="password" id="register-password-input">
+    <div class="form-group row">
+      <label for="register-password-input" class="col-xs-2 col-form-label">Password:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="password" id="register-password-input" name="password">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="register-password-confirm-input" class="col-xs-2  col-form-label">Confirm Password:</label>
-    <div class="col-xs-4">
-      <input class="form-control" type="password" id="register-password-confirm-input">
+    <div class="form-group row">
+      <label for="register-password-confirm-input" class="col-xs-2  col-form-label">Confirm Password:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="password" id="register-password-confirm-input" name="confirmPassword">
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Register</button>
+    <div class="alert alert-danger" role="alert" id="register-warning" style="display:none;"></div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
   <hr class="m-y-2">
-  <div class="form-group row">
-    <label for="log-in-username-input" class="col-xs-2 col-form-label">Username:</label>
-    <div class="col-xs-4">
-      <input class="form-control" type="text" id="log-in-username-input">
+  <form id="login-form">
+    <div class="form-group row">
+      <label for="log-in-username-input" class="col-xs-2 col-form-label">Username:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="text" id="log-in-username-input" name="username">
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="log-in-password-input" class="col-xs-2 col-form-label">Password:</label>
-    <div class="col-xs-4">
-      <input class="form-control" type="password" id="log-in-password-input">
+    <div class="form-group row">
+      <label for="log-in-password-input" class="col-xs-2 col-form-label">Password:</label>
+      <div class="col-xs-4">
+        <input class="form-control" type="password" id="log-in-password-input" name="password">
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Log in</button>
+    <div class="alert alert-danger" role="alert" id="login-warning" style="display:none;"></div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </form>
 </div>
 {{>footer}}
