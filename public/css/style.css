@@ -1,8 +1,17 @@
 body {
+  background: #663399;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+footer {
+  color: white;
+}
+
+.btn-primary {
+  background: #663399;
 }

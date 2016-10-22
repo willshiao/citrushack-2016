@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Express' });
+  res.render('pages/index.hbs', { title: 'Express', siteName: 'Collaborooms'});
 });
 
 router.get('/login', (req, res) => {
