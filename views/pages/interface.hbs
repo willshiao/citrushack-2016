@@ -1,16 +1,18 @@
 <header>
-  <nav class="navbar navbar-light bg-faded">
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#nav-bar">&#9776;</button>
-    <div class="collapse navbar-toggleable-xs" id="nav-bar">
-      <a class="navbar-brand" href="#">{{siteName}}</a>
-      <ul class="nav navbar-nav pull-xs-right float-xs-right">
-        <li class="nav-item">
-          <p class="form-control-static mb-0">Room: <span id="room">None</span></p>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal">Change Room</a>
-        </li>
-      </ul>
+  <nav class="navbar navbar-full navbar-light navbar-static-top bg-faded">
+    <div class="container"></div>
+      <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#nav-bar">&#9776;</button>
+      <div class="collapse navbar-toggleable-xs" id="nav-bar">
+        <a class="navbar-brand" href="#">{{siteName}}</a>
+        <ul class="nav navbar-nav pull-xs-right float-xs-right">
+          <li class="nav-item text-muted">
+            <p class="form-control-static mb-0">Room: <span id="room">None</span></p>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal">Change Room</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
@@ -44,14 +46,16 @@
   </div>
 </div>
 
-<div class="card card-block" id="interface-background">
-  <form id="new-task-form">
-    <div class="form-group">
-      <label for="task-message">Task:</label>
-      <input type="text" class="form-control" id="task-message" name="task-title">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<div class="container">
+  <div class="card card-block" id="task-adder">
+    <form id="new-task-form">
+      <div class="form-group">
+        <label for="task-message">Task:</label>
+        <input type="text" class="form-control" id="task-message" name="task-title">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>
 
 {{>footer}}

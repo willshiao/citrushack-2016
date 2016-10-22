@@ -1,19 +1,11 @@
+html {
+  height: 100%;
+  position: relative;
+}
+
 body {
+  min-height: 100%;
   background: #663399;
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.btn {
-  background: #663399;
-}
-
-.btn-outline {
-  border-color: #663399;
 }
 
 .navbar {
@@ -28,10 +20,15 @@ a {
   background: white;
 }
 
-#interface-background {
+#task-adder {
   margin: 15px 0 0 0;
 }
 
-footer .card-block {
-  margin: 15px 0 0 0;
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px 0 0 0;
+  background: white;
 }
