@@ -21,8 +21,9 @@ router.get('/', notAuthenticated, (req, res) => {
   });
 });
 
-router.get('/login', (req, res) => {
-  res.render('signin', { title: 'Login' });
+router.get('/logout', isAuthenticated, function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 router.get('/welcome', (req, res) => {

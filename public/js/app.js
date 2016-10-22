@@ -21,8 +21,6 @@ $(function() {
   });
 });
 
-socket.join(roomId);
-
 socket.on('room:create:res', function(data) {
   console.log('Got data:', data);
   if(!data.success) return console.error('Failed to create room');
