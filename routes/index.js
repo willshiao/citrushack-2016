@@ -25,8 +25,8 @@ router.get('/login', (req, res) => {
   res.render('signin', { title: 'Login' });
 });
 
-router.get('/test', (req, res) => {
-  res.render('test', { title: 'Test' });
+router.get('/welcome', (req, res) => {
+  res.render('pages/welcome', { title: 'Welcome' });
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
