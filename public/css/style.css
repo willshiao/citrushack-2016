@@ -8,10 +8,6 @@ a {
   color: #00B7FF;
 }
 
-footer {
-  color: white;
-}
-
 .btn {
   background: #663399;
 }
@@ -20,8 +16,22 @@ footer {
   border-color: #663399;
 }
 
-#interface-background {
+.navbar {
   background: white;
-  margin: 15px;
-  padding: 15px;
+}
+
+.card-block {
+  background: white;
+}
+
+.jumbotron {
+  background: white;
+}
+
+#interface-background {
+  margin: 15px 0 0 0;
+}
+
+footer .card-block {
+  margin: 15px 0 0 0;
 }
