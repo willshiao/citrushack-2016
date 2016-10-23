@@ -33,7 +33,21 @@ body {
   margin-top: 10px
 }
 
+.list-group-item.active,
+.list-group-item.active:focus, 
+.list-group-item.active:hover {
+  background-color: #4a148c;
+  border-color: #4a148c;
+}
+
+.list-group-item.active .list-group-item-text,
+.list-group-item.active:focus .list-group-item-text,
+.list-group-item.active:hover .list-group-item-text {
+  color: white;
+}
+
 footer {
+  z-index: -1;
   position: fixed;
   margin-top: 30px;
   right: 0;
