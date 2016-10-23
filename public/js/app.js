@@ -7,6 +7,11 @@ socket.on('connect', function() {
 $(function() {
   $('#sortable').sortable();
   $('#sortable').disableSelection();
+  $('#tasks').sortable({
+    update: function(event, ui) {
+      socket.emit('task:reorder', $('#tasks').sortable('toArray'));
+    }
+  });
 
   socket.emit('task:get');
 
@@ -20,9 +25,18 @@ $(function() {
 
   $('#new-task-form').submit(function(evt) {
     evt.preventDefault();
-    socket.emit('task:new', {
+    var formInfo = {
       name: $('#task-name-input').val(),
-    });
+    };
+    // content: $('#task-description').val(),
+    formInfo.isChecklist = $('#checklist-checkbox').is(':checked');
+    if(formInfo.isChecklist) {
+      formInfo.listItems = [];
+    } else {
+      formInfo.content = $('#task-description').val();
+    }
+    console.log('Submitting info: ', formInfo);
+    socket.emit('task:new', formInfo);
   });
 
   $('#join-room-form').submit(function(evt) {
@@ -47,6 +61,9 @@ socket.on('room:create:res', function(data) {
   roomId = data.roomId;
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
+  clearTasks();
+  $('#modal').modal('toggle');
+  socket.emit('task:get');
 });
 
 socket.on('room:join:res', function(data) {
@@ -54,6 +71,9 @@ socket.on('room:join:res', function(data) {
   if(!data.success) return console.error('Failed to join room');
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
+  clearTasks();
+  $('#modal').modal('toggle');
+  socket.emit('task:get');
 });
 
 socket.on('task:new:res', data => {
@@ -64,27 +84,48 @@ socket.on('task:new:res', data => {
 socket.on('task:get:res', function(tasks) {
   console.log('Got tasks:', tasks);
   clearTasks();
-  var taskElements = tasks
-    .map(task => makeTaskElement(task.name, task.content));
-  for(var i = 0; i < taskElements.length; ++i) {
-    $('#tasks').append(taskElements[i]);
+
+  for(var i = 0; i < tasks.length; ++i) {
+    $('#tasks').append(tasks[i].isChecklist ?
+      makeChecklistElement(tasks[i]) :
+      makeTaskElement(tasks[i]));
   }
 });
 
 socket.on('update:task:new', function(task) {
   console.log('Got new task:', task);
-  $('#tasks').append(makeTaskElement(task.name, task.content));
+  $('#tasks').append(task.isChecklist ?
+      makeChecklistElement(task) :
+      makeTaskElement(task));
 });
 
 function clearTasks() {
   $('#tasks').html('');
 }
 
-function makeTaskElement(title, content) {
-  return '<div class="card card-block tasks">\n' +
-    '<h4 class="card-title task-title">' + escapeHtml(title) + '</h4>\n' +
-    '<p class="task-content">' + escapeHtml(content || '') + '</p>\n' +
+function makeTaskElement(task) {
+  return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
+    '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
+    '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
+}
+
+function makeChecklistElement(task) {
+  var el = '<div class="card card-block tasks" id="' + task.slug + '">\n' +
+      '<h4 class="card-title">' + escapeHtml(task.name) + '</h4>\n' +
+      '<ul class="list-group" id="sortable" >';
+  for(var i = 0; i < task.listItems; ++i) {
+    el += makeListItem(task.listItems[i]);
+  }
+  el += '</ul>\n' +
+    '</div>';
+  return el;
+}
+
+function makeListItem(item) {
+  return '<li class="list-group-item">\n' +
+    '<p class="list-group-item-text">' + escapeHtml(item.text) + '</p>\n' +
+  '</li>';
 }
 
 var entityMap = {

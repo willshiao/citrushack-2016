@@ -25,5 +25,23 @@
     "shortid": "^2.2.6",
     "socket.io": "^1.5.0",
     "winston": "^2.2.0"
-  }
+  },
+  "description": "App to help delegate chores amongst roommates.",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willshiao/citrushack-2016.git"
+  },
+  "keywords": [
+    "web",
+    "scheduler",
+    "socket.io"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willshiao/citrushack-2016/issues"
+  },
+  "homepage": "https://github.com/willshiao/citrushack-2016#readme"
 }
