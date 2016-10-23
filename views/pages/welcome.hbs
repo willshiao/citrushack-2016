@@ -1,0 +1,98 @@
+<div class="float-xs-right">
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#Register">Register</button>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#SignIn">SignIn</button>
+</div>
+
+
+<div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="card card-block col-xs-6 offset-xs-3">
+      <form id="register-form">
+        <div class="form-group row">
+          <label for="register-username-input" class="col-xs-4 offset-xs-1 col-form-label">Username:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="text" id="register-username-input" name="username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="register-password-input" class="col-xs-4 offset-xs-1 col-form-label">Password:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="password" id="register-password-input" name="password">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="register-password-confirm-input" class="col-xs-4 offset-xs-1 col-form-label">Confirm Password:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="password" id="register-password-confirm-input" name="confirmPassword">
+          </div>
+        </div>
+        <div class="alert alert-danger" role="alert" id="register-warning" style="display:none;"></div>
+      </form>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron text-xs-center">
+  <h1 class="display-4">Collaborooms</h1>
+  <p class="lead">A collaborative solution to the stresses of dorm living.</p>
+  <hr class="m-y-2">
+  <div class="row">
+    <div class="card card-block col-xs-6 offset-xs-3">
+      <form id="register-form">
+        <div class="form-group row">
+          <label for="register-username-input" class="col-xs-4 offset-xs-1 col-form-label">Username:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="text" id="register-username-input" name="username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="register-password-input" class="col-xs-4 offset-xs-1 col-form-label">Password:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="password" id="register-password-input" name="password">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="register-password-confirm-input" class="col-xs-4 offset-xs-1 col-form-label">Confirm Password:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="password" id="register-password-confirm-input" name="confirmPassword">
+          </div>
+        </div>
+        <div class="alert alert-danger" role="alert" id="register-warning" style="display:none;"></div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+    <div class="card card-block col-xs-6 offset-xs-3">
+      <form id="login-form">
+        <div class="form-group row">
+          <label for="log-in-username-input" class="col-xs-4 offset-xs-1 col-form-label">Username:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="text" id="log-in-username-input" name="username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="log-in-password-input" class="col-xs-4 offset-xs-1 col-form-label">Password:</label>
+          <div class="col-xs-6">
+            <input class="form-control" type="password" id="log-in-password-input" name="password">
+          </div>
+        </div>
+        <div class="alert alert-danger" role="alert" id="login-warning" style="display:none;"></div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </form>
+    </div>
+  </div>
+</div>
+{{>footer}}

@@ -27,7 +27,12 @@ router.get('/logout', isAuthenticated, function(req, res){
 });
 
 router.get('/welcome', (req, res) => {
-  res.render('pages/welcome', { title: 'Welcome' });
+  res.render('pages/welcome', { 
+    title: 'Welcome',
+    siteName: config.get('siteName'),
+    scriptFile: 'welcome.js',
+    noSocket: true,
+  });
 });
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
