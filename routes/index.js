@@ -5,6 +5,7 @@ const router = express.Router();
 
 const logger = require('../lib/logger');
 const User = require('../models/User');
+const Room = require('../models/Room');
 const passport = require('../lib/passport');
 const h = require('../lib/helpers');
 const isAuthenticated = require('../lib/middleware').isAuthenticated;
@@ -57,12 +58,26 @@ router.post('/register', (req, res, next) => {
 });
 
 router.get('/app', isAuthenticated, (req, res) => {
-  console.log(req.user);
-  res.render('pages/interface', {
+  const settings = {
     title: config.get('siteName'),
     scriptFile: 'app.js',
-    roomId: req.user.room,
-  });
+  };
+
+  if(!req.user.room) {
+    return res.render('pages/interface', settings);
+  }
+
+  Room.find({slug: req.user.room})
+    .limit(1)
+    .lean()
+    .exec()
+    .then(room => {
+      if(room.length <= 0) return res.render('pages/interface', settings);
+      settings.roomId = room[0].slug;
+      settings.roomName = room[0].name ? room[0].name : 'None';
+      res.render('pages/interface', settings);
+    })
+    .catch(logger.error);
 });
 
 module.exports = router;

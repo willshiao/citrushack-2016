@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="#">{{siteName}}</a>
       <ul class="nav navbar-nav pull-xs-right float-xs-right">
         <li class="nav-item">
-          <p class="form-control-static mb-0">Room: <span id="room">None</span></p>
+          <p class="form-control-static mb-0">Room: <span id="room">{{roomName}}</span> <span id="roomId">({{roomId}})</span></p>
         </li>
         <li class="nav-item">
           <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal">Change Room</a>
@@ -21,8 +21,8 @@
       <div class="modal-body">
         <form class="form-inline" id="join-room-form">
           <div class="form-group">
-            <label for="room-ID-input">Room ID:</label>
-            <input class="form-control" id="room-ID-input" name="roomId">
+            <label for="room-id-input">Room ID:</label>
+            <input class="form-control" id="room-id-input" name="roomId">
           </div>
           <button type="submit" class="btn btn-primary">Join Room</button>
         </form>
@@ -31,7 +31,7 @@
 
         <form class="form-inline" id="create-room-form">
           <div class="form-group">
-            <label for="room-ID-input">Room name:</label>
+            <label for="room-name-input">Room name:</label>
             <input class="form-control" id="room-name-input" name="roomName">
           </div>
           <button type="submit" class="btn btn-primary">Create Room</button>
