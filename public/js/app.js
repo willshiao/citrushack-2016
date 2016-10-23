@@ -57,6 +57,7 @@ socket.on('room:create:res', function(data) {
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
   clearTasks();
+  $('#modal').modal('toggle');
   socket.emit('task:get');
 });
 
@@ -66,6 +67,7 @@ socket.on('room:join:res', function(data) {
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
   clearTasks();
+  $('#modal').modal('toggle');
   socket.emit('task:get');
 });
 
