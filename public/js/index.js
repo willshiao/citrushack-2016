@@ -10,6 +10,7 @@ $(function() {
     }).done(function(data) {
       console.log('Done:', data);
       if(data.success) {
+        $('#register-success').text('Success!').show();
         window.location.href = data.redirect;
       } else {
         $('#register-warning').text(data.message).show();
@@ -29,6 +30,7 @@ $(function() {
       dataType: 'json',
     }).done(function(data) {
       if(data.success) {
+        $('#login-success').text('Success!').show();
         window.location.href = data.redirect;
       } else {
         $('#login-warning').text(data.message).show();
