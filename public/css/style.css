@@ -17,6 +17,7 @@ body {
 
 #splash-page {
   padding-top: 45px;
+  padding-bottom: 100px;
 }
 
 #task-adder {
@@ -25,6 +26,7 @@ body {
 
 #tasks {
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 
 .tasks {
@@ -32,7 +34,7 @@ body {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   margin-top: 30px;
   right: 0;
   bottom: 0;
