@@ -48,6 +48,8 @@ $(function() {
     socket.emit('room:join', {
       roomId: $('#room-id-input').val()
     });
+    $('#room-id-input').val('');
+    $('#room-name-input').val('');
   });
 
   $('#create-room-form').submit(function(evt) {
@@ -55,6 +57,10 @@ $(function() {
     socket.emit('room:create', {
       roomName: $('#room-name-input').val(),
     });
+    $('#room-id-input').val('');
+    $('#room-id-input').blur();
+    $('#room-name-input').val('');
+    $('#room-name-input').blur();
   });
 
   $('#chat-form').submit(function(evt) {
