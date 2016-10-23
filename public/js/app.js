@@ -96,7 +96,7 @@ socket.on('room:join:res', function(data) {
 
 socket.on('task:removed', function(data) {
   console.log(data.slug, ' was removed...');
-  $('#'+data.slug).remove();
+  $('#'+data.slug).fadeOut('fast');
 });
 
 socket.on('task:new:res', data => {
@@ -143,7 +143,6 @@ function makeTaskElement(task) {
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<button type="button" class="close close-btn">&times;</button>\n' +
-    '<button type="submit" class="btn btn-purple">Completed</button>\n' +
     '<div class="btn-group">\n' +
       '<button class="btn btn-purple dropdown-toggle" type="button" data-toggle="dropdown">Delegate</button>\n' +
       '<div class="dropdown-menu">\n' +
