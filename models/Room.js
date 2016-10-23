@@ -16,6 +16,7 @@ const taskSchema = new Schema({
   content: String,
   deleted: {type: Boolean, default: false},
   roomSlug: String,
+  assignedTo: String,
 });
 
 const roomSchema = new Schema({

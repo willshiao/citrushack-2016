@@ -1,5 +1,7 @@
 'use strict';
 
+var roomUsers = [];
+
 socket.on('connect', function() {
   console.log('Connected successfully!');
 });
@@ -14,6 +16,7 @@ $(function() {
   });
 
   socket.emit('task:get');
+  socket.emit('room:users:get');
 
   $('#tasks').on('click', '.close-btn', function(evt) {
     socket.emit('task:remove', $(evt.target).parent().attr('id'));
@@ -62,8 +65,19 @@ $(function() {
     console.log('Sending chat message...');
     socket.emit('chat:message', $('#chat-text').val());
   });
+
   $(document).on('click', '#chat-panel .dropdown-menu', function (e) {
     e.stopPropagation();
+  });
+
+  $(document).on('click', '.delegate-btn', function(evt) {
+    console.log('Target:', $(evt.target).parent().find('.dropdown-menu'));
+    addDropdowns($(evt.target).parent().find('.dropdown-menu'));
+  });
+
+  $(document).on('click', '.delegate-selector', function(evt) {
+    var $this = $(evt.target);
+    socket.emit('task:delegate:assign', $this.closest('div.card.tasks').attr('id'), $this.data('slug'));
   });
 });
 
@@ -115,11 +129,23 @@ socket.on('task:get:res', function(tasks) {
   }
 });
 
+socket.on('room:users:update', function(users) {
+  console.log('Setting users:', users);
+  roomUsers = users;
+});
+
 socket.on('update:task:new', function(task) {
   console.log('Got new task:', task);
   $('#tasks').prepend(task.isChecklist ?
       makeChecklistElement(task) :
       makeTaskElement(task));
+});
+
+socket.on('task:delegate:update', function(taskSlug, delegateSlug) {
+  console.log('Updating delegate:', delegateSlug);
+  const userName = roomUsers.find(usr => usr.slug === delegateSlug).username || 'None';
+  console.log('Found user: ', userName);
+  $('#' + taskSlug + ' .delegate-name').text(userName);
 });
 
 function clearTasks() {
@@ -135,26 +161,32 @@ function addChatMessage(user, message) {
     escapeHtml(message) + '\n' +
   '</div>';
   $('#messages').append(el);
-  console.log('Scrolling...');
   $('#messages').scrollTop(10000);
 }
 
 function makeTaskElement(task) {
+  console.log('Task:', task);
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<button type="button" class="close close-btn">&times;</button>\n' +
-    '<div class="btn-group">\n' +
-      '<button class="btn btn-purple dropdown-toggle" type="button" data-toggle="dropdown">Delegate</button>\n' +
-      '<div class="dropdown-menu">\n' +
-        '<a class="dropdown-item" href="#">Person 1</a>\n' +
-        '<a class="dropdown-item" href="#">Person 2</a>\n' +
-        '<a class="dropdown-item" href="#">Person 3</a>\n' +
-        '<div class="dropdown-divider"></div>\n' +
-        '<a class="dropdown-item" href="#">Randomize</a>\n' +
-      '</div>\n' +
-    '</div>\n' +
     '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
+    '<div class="row">\n' +
+      '<div class="btn-group col-xs-6">\n' +
+        '<button class="btn btn-purple dropdown-toggle delegate-btn" type="button" data-toggle="dropdown">Delegate</button>\n' +
+        '<div class="dropdown-menu">\n' +
+        '</div>\n' +
+      '</div>\n' +
+      '<div class="col-xs-6">Delegated to: <em class="delegate-name">' + escapeHtml(task.assignedName || 'None') + '</em></div>\n' +
+    '</div>\n' +
     '</div>';
+}
+
+function addDropdowns(dropdownMenu) {
+  dropdownMenu.html('');
+  for(var i = 0; i < roomUsers.length; ++i) {
+    dropdownMenu.append('<a class="dropdown-item delegate-selector" data-slug="' + roomUsers[i].slug
+      + '">' + roomUsers[i].username + '</a>');
+  }
 }
 
 function makeChecklistElement(task) {
