@@ -37,6 +37,11 @@ app.use(configuredSession);
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.siteUrl = config.get('siteUrl');
+  res.locals.siteName = config.get('siteName');
+  next();
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

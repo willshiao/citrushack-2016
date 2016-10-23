@@ -1,7 +1,8 @@
 'use strict';
 
 const config = {
-  siteName: 'Collaborooms',
+  siteName: 'Contribumate',
+  siteUrl: 'http://localhost:3000',
   session: {
     secret: 'JHvK2kgv0BWTdYWl7DN1',
     saveUninitialized: false,
