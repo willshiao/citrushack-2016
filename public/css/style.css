@@ -85,3 +85,9 @@ footer {
   padding-top: 15px;
   background: white;
 }
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}

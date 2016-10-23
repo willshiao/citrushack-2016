@@ -15,6 +15,10 @@ $(function() {
 
   socket.emit('task:get');
 
+  $('#tasks').on('click', '.close-btn', function(evt) {
+    socket.emit('task:remove', $(evt.target).parent().attr('id'));
+  });
+
   $('#checklist-checkbox').change(function() {
     if(this.checked) {
       $('#description-container').hide();
@@ -76,6 +80,11 @@ socket.on('room:join:res', function(data) {
   socket.emit('task:get');
 });
 
+socket.on('task:removed', function(data) {
+  console.log(data.slug, ' was removed...');
+  $('#'+data.slug).remove();
+});
+
 socket.on('task:new:res', data => {
   if(!data.success) return console.error(data.message);
   console.log('Added new task successfully');
@@ -106,6 +115,7 @@ function clearTasks() {
 function makeTaskElement(task) {
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
+    '<button type="button" class="close close-btn">&times;</button>\n' +
     '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
 }
