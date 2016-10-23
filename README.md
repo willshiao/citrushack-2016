@@ -1,6 +1,6 @@
 #  Citrus-Hack-2016
  [![GitHub contributors](https://img.shields.io/github/contributors/willshiao/citrushack-2016.svg?style=flat-square)](https://github.com/willshiao/citrushack-2016/graphs/contributors)
- [![License](https://img.shields.io/github/license/willshiao/citrushack-2016.svg)](https://github.com/willshiao/citrushack-2016/blob/master/LICENSE)
+ [![License](https://img.shields.io/github/license/willshiao/citrushack-2016.svg?style=flat-square)](https://github.com/willshiao/citrushack-2016/blob/master/LICENSE)
 
  Our site is hosted live at [contribumate.org](http://contribumate.org/app).
 
