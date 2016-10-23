@@ -20,9 +20,18 @@ $(function() {
 
   $('#new-task-form').submit(function(evt) {
     evt.preventDefault();
-    socket.emit('task:new', {
+    var formInfo = {
       name: $('#task-name-input').val(),
-    });
+    };
+    // content: $('#task-description').val(),
+    formInfo.isChecklist = $('#checklist-checkbox').is(':checked');
+    if(formInfo.isChecklist) {
+      formInfo.listItems = [];
+    } else {
+      formInfo.content = $('#task-description').val();
+    }
+    console.log('Submitting info: ', formInfo);
+    socket.emit('task:new', formInfo);
   });
 
   $('#join-room-form').submit(function(evt) {
@@ -64,27 +73,48 @@ socket.on('task:new:res', data => {
 socket.on('task:get:res', function(tasks) {
   console.log('Got tasks:', tasks);
   clearTasks();
-  var taskElements = tasks
-    .map(task => makeTaskElement(task.name, task.content));
-  for(var i = 0; i < taskElements.length; ++i) {
-    $('#tasks').append(taskElements[i]);
+
+  for(var i = 0; i < tasks.length; ++i) {
+    $('#tasks').append(tasks[i].isChecklist ?
+      makeChecklistElement(tasks[i]) :
+      makeTaskElement(tasks[i]));
   }
 });
 
 socket.on('update:task:new', function(task) {
   console.log('Got new task:', task);
-  $('#tasks').append(makeTaskElement(task.name, task.content));
+  $('#tasks').append(task.isChecklist ?
+      makeChecklistElement(task) :
+      makeTaskElement(task));
 });
 
 function clearTasks() {
   $('#tasks').html('');
 }
 
-function makeTaskElement(title, content) {
+function makeTaskElement(task) {
   return '<div class="card card-block tasks">\n' +
-    '<h4 class="card-title task-title">' + escapeHtml(title) + '</h4>\n' +
-    '<p class="task-content">' + escapeHtml(content || '') + '</p>\n' +
+    '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
+    '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
+}
+
+function makeChecklistElement(task) {
+  var el = '<div class="card card-block tasks">\n' +
+      '<h4 class="card-title">' + escapeHtml(task.name) + '</h4>\n' +
+      '<ul class="list-group" id="sortable" >';
+  for(var i = 0; i < task.listItems; ++i) {
+    el += makeListItem(task.listItems[i]);
+  }
+  el += '</ul>\n' +
+    '</div>';
+  return el;
+}
+
+function makeListItem(item) {
+  return '<li class="list-group-item">\n' +
+    '<p class="list-group-item-text">' + escapeHtml(item.text) + '</p>\n' +
+  '</li>';
 }
 
 var entityMap = {

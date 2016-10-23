@@ -13,7 +13,7 @@ const taskSchema = new Schema({
     text: String,
     completed: Boolean,
   }],
-  description: String,
+  content: String,
   deleted: {type: Boolean, default: false},
   roomSlug: String,
 });
