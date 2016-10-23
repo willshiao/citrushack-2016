@@ -56,10 +56,6 @@
         <textarea type="text" id="task-description" class="md-textarea" name="task-description"></textarea>
         <label for="task-description">Description</label>
       </div>
-      <fieldset class="form-group">
-        <input type="checkbox" id="checklist-checkbox" name="checklist-checkbox">
-        <label for="checklist-checkbox">Use checklist</label>
-      </fieldset>
       <button type="submit" class="btn btn-purple">Submit</button>
     </form>
   </div>
@@ -68,7 +64,8 @@
 <div class="container" id="tasks">
   <div class="card card-block tasks">
     <h4 class="card-title">[title]</h4>
-    <button type="button">
+    <button type="button" class="close ">
+    &times;</button>
     <ul class="list-group" id="sortable" >
       <li class="list-group-item active">
         <p class="list-group-item-text">[list]</p>
@@ -82,7 +79,6 @@
     </ul>
   </div>
 </div>
-
 
 {{>footer}}
 <script type="text/javascript" charset="utf-8">
