@@ -116,6 +116,17 @@ function makeTaskElement(task) {
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<button type="button" class="close close-btn">&times;</button>\n' +
+    '<button type="submit" class="btn btn-purple">Completed</button>\n' +
+    '<div class="btn-group">\n' +
+      '<button class="btn btn-purple dropdown-toggle" type="button" data-toggle="dropdown">Delegate</button>\n' +
+      '<div class="dropdown-menu">\n' +
+        '<a class="dropdown-item" href="#">Person 1</a>\n' +
+        '<a class="dropdown-item" href="#">Person 2</a>\n' +
+        '<a class="dropdown-item" href="#">Person 3</a>\n' +
+        '<div class="dropdown-divider"></div>\n' +
+        '<a class="dropdown-item" href="#">Randomize</a>\n' +
+      '</div>\n' +
+    '</div>\n' +
     '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
 }
