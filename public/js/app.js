@@ -116,7 +116,7 @@ socket.on('room:join:res', function(data) {
 
 socket.on('task:removed', function(data) {
   console.log(data.slug, ' was removed...');
-  $('#'+data.slug).fadeOut('fast');
+  $('#'+data.slug).remove();
 });
 
 socket.on('task:new:res', data => {
