@@ -38,7 +38,6 @@ router.get('/welcome', (req, res) => {
 router.post('/login', passport.authenticate('local'), (req, res) => {
   // res.redirect('/app');
   res.json({success: true, redirect: '/app'});
-
 });
 
 router.post('/register', (req, res, next) => {
