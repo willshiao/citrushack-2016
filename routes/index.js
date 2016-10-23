@@ -65,6 +65,7 @@ router.get('/app', isAuthenticated, (req, res) => {
   const settings = {
     title: config.get('siteName'),
     scriptFile: 'app.js',
+    username: req.user.username,
   };
 
   if(!req.user.room) {

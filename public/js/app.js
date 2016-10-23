@@ -56,6 +56,20 @@ $(function() {
       roomName: $('#room-name-input').val(),
     });
   });
+
+  $('#chat-form').submit(function(evt) {
+    evt.preventDefault();
+    console.log('Sending chat message...');
+    socket.emit('chat:message', $('#chat-text').val());
+  });
+  $(document).on('click', '#chat-panel .dropdown-menu', function (e) {
+    e.stopPropagation();
+  });
+});
+
+socket.on('chat:message', function(user, msg) {
+  console.log('Received chat message:', msg);
+  addChatMessage(user, msg);
 });
 
 socket.on('room:create:res', function(data) {
@@ -110,6 +124,19 @@ socket.on('update:task:new', function(task) {
 
 function clearTasks() {
   $('#tasks').html('');
+}
+
+function addChatMessage(user, message) {
+  var el = '<div class="card card-block col-xs-8';
+  if(user === username)
+    el += ' offset-xs-4';
+  el += '">\n' +
+    '<strong>' + user +': </strong>\n' +
+    escapeHtml(message) + '\n' +
+  '</div>';
+  $('#messages').append(el);
+  console.log('Scrolling...');
+  $('#messages').scrollTop(10000);
 }
 
 function makeTaskElement(task) {
