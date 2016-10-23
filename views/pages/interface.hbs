@@ -8,7 +8,7 @@
           <p class="form-control-static mb-0">Room: <span id="room">{{roomName}}</span> <span id="roomId">({{roomId}})</span></p>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-purple" data-toggle="modal" data-target="#modal">Change Room</a>
+          <button type="button" class="btn btn-purple" data-toggle="modal" data-target="#modal">Change Room</button>
         </li>
       </ul>
     </div>
@@ -51,7 +51,7 @@
         <input type="text" id="task-name-input" class="form-control" name="task-name">
         <label for="task-name-input">Title</label>
       </div>
-      <div class="md-form">
+      <div class="md-form" id="description-container">
         <input type="text" id="task-description" class="form-control" name="task-description">
         <label for="task-description">Description</label>
       </div>
@@ -67,11 +67,7 @@
 <div class="container" id="tasks">
   <div class="card card-block tasks">
     <h4 class="card-title">[title]</h4>
-    <p>[content-here]</p>
-  </div>
-  <div class="card card-block tasks">
-    <h4 class="card-title">[title]</h4>
-    <ul class="list-group">
+    <ul class="list-group" id="sortable" >
       <li class="list-group-item active">
         <p class="list-group-item-text">[list]</p>
       </li>
