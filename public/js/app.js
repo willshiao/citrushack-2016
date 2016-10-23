@@ -48,6 +48,8 @@ $(function() {
     socket.emit('room:join', {
       roomId: $('#room-id-input').val()
     });
+    $('#room-id-input').val('');
+    $('#room-name-input').val('');
   });
 
   $('#create-room-form').submit(function(evt) {
@@ -55,6 +57,10 @@ $(function() {
     socket.emit('room:create', {
       roomName: $('#room-name-input').val(),
     });
+    $('#room-id-input').val('');
+    $('#room-id-input').blur();
+    $('#room-name-input').val('');
+    $('#room-name-input').blur();
   });
 
   $('#chat-form').submit(function(evt) {
@@ -102,6 +108,10 @@ socket.on('task:removed', function(data) {
 socket.on('task:new:res', data => {
   if(!data.success) return console.error(data.message);
   console.log('Added new task successfully');
+  $('#task-name-input').val('');
+  $('#task-name-input').blur();
+  $('#task-description').val('');
+  $('#task-description').blur();
 });
 
 socket.on('task:get:res', function(tasks) {
@@ -143,6 +153,7 @@ function makeTaskElement(task) {
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<button type="button" class="close close-btn">&times;</button>\n' +
+    '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '<div class="btn-group">\n' +
       '<button class="btn btn-purple dropdown-toggle" type="button" data-toggle="dropdown">Delegate</button>\n' +
       '<div class="dropdown-menu">\n' +
@@ -153,7 +164,6 @@ function makeTaskElement(task) {
         '<a class="dropdown-item" href="#">Randomize</a>\n' +
       '</div>\n' +
     '</div>\n' +
-    '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
 }
 
