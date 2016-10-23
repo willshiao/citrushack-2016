@@ -16,7 +16,6 @@ router.get('/', notAuthenticated, (req, res) => {
   console.log('User', req.user);
   res.render('pages/index', {
     title: 'Express',
-    siteName: config.get('siteName'),
     scriptFile: 'index.js',
     noSocket: true,
   });
