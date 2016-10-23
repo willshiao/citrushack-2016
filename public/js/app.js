@@ -103,7 +103,7 @@ socket.on('task:get:res', function(tasks) {
 
 socket.on('update:task:new', function(task) {
   console.log('Got new task:', task);
-  $('#tasks').append(task.isChecklist ?
+  $('#tasks').prepend(task.isChecklist ?
       makeChecklistElement(task) :
       makeTaskElement(task));
 });
