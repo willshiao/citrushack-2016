@@ -8,7 +8,7 @@
           <p class="form-control-static mb-0">Room: <span id="room">{{roomName}}</span> <span id="roomId">({{roomId}})</span></p>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modal">Change Room</a>
+          <button type="button" class="btn btn-purple" data-toggle="modal" data-target="#modal">Change Room</a>
         </li>
       </ul>
     </div>
@@ -20,39 +20,59 @@
     <div class="modal-content">
       <div class="modal-body">
         <form class="form-inline" id="join-room-form">
-          <div class="form-group">
+          <div class="md-form">
+            <input type="text" id="room-id-input" class="form-control" name="roomId">
             <label for="room-id-input">Room ID:</label>
-            <input class="form-control" id="room-id-input" name="roomId">
           </div>
-          <button type="submit" class="btn btn-primary">Join Room</button>
+          <button type="submit" class="btn btn-purple">Join Room</button>
         </form>
 
         <hr class="m-y-2">
 
         <form class="form-inline" id="create-room-form">
-          <div class="form-group">
-            <label for="room-name-input">Room name:</label>
-            <input class="form-control" id="room-name-input" name="roomName">
+          <div class="md-form">
+            <input type="text" id="room-name-input" class="form-control" name="roomName">
+            <label for="room-name-input">Room Name:</label>
           </div>
-          <button type="submit" class="btn btn-primary">Create Room</button>
+          <button type="submit" class="btn btn-purple">Create Room</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-purple" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="card card-block" id="interface-background">
-  <form id="new-task-form">
-    <div class="form-group">
-      <label for="task-message">Task:</label>
-      <input type="text" class="form-control" id="task-name-input" name="task-name">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<div class="container">
+  <div class="card card-block" id="task-adder">
+    <form id="new-task-form">
+      <div class="md-form">
+        <input type="text" id="task-name-input" class="form-control" name="task-name">
+        <label for="task-name-input">Title</label>
+      </div>
+      <div class="md-form">
+        <input type="text" id="task-description" class="form-control" name="task-description">
+        <label for="task-description">Description</label>
+      </div>
+      <fieldset class="form-group">
+        <input type="checkbox" id="checklist-checkbox" name="checklist-checkbox">
+        <label for="checklist-checkbox">Use checklist</label>
+      </fieldset>
+      <button type="submit" class="btn btn-purple">Submit</button>
+    </form>
+  </div>
 </div>
+
+<div class="container" id="tasks">
+  <div class="card card-block tasks">
+    [content-here]
+  </div>
+  <div class="card card-block tasks">
+    [content-here]
+  </div>
+</div>
+
 
 {{>footer}}
 <script type="text/javascript" charset="utf-8">

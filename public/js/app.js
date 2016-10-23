@@ -8,7 +8,7 @@ $(function() {
   $('#new-task-form').submit(function(evt) {
     evt.preventDefault();
     socket.emit('task:new', {
-      title: $('#task-name-input').val();
+      title: $('#task-name-input').val(),
     });
   });
 
