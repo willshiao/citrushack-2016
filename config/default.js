@@ -2,7 +2,7 @@
 
 const config = {
   siteName: 'Contribumate',
-  siteUrl: 'localhost:3000',
+  siteUrl: 'http://localhost:3000',
   session: {
     secret: 'JHvK2kgv0BWTdYWl7DN1',
     saveUninitialized: false,
