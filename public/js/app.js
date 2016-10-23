@@ -56,6 +56,8 @@ socket.on('room:create:res', function(data) {
   roomId = data.roomId;
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
+  clearTasks();
+  socket.emit('task:get');
 });
 
 socket.on('room:join:res', function(data) {
@@ -63,6 +65,8 @@ socket.on('room:join:res', function(data) {
   if(!data.success) return console.error('Failed to join room');
   $('#room').text(data.name);
   $('#roomId').text('(' + data.roomId + ')');
+  clearTasks();
+  socket.emit('task:get');
 });
 
 socket.on('task:new:res', data => {
