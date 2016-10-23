@@ -147,6 +147,8 @@ function addChatMessage(user, message) {
   $('#messages').append(el);
   console.log('Scrolling...');
   $('#messages').scrollTop(10000);
+  $('#chat-text').val('');
+  $('#chat-text').blur();
 }
 
 function makeTaskElement(task) {
