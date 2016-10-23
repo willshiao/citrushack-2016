@@ -48,16 +48,16 @@
   <div class="card card-block" id="task-adder">
     <form id="new-task-form">
       <div class="md-form">
-        <input type="text" id="form1" class="form-control">
-        <label for="form1">Title</label>
+        <input type="text" id="task-name-input" class="form-control" name="task-name">
+        <label for="task-name-input">Title</label>
       </div>
       <div class="md-form">
-        <input type="text" id="form2" class="form-control">
-        <label for="form2">Description</label>
+        <input type="text" id="task-description" class="form-control" name="task-description">
+        <label for="task-description">Description</label>
       </div>
       <fieldset class="form-group">
-        <input type="checkbox" id="checkbox1">
-        <label for="checkbox1">Checkboxes</label>
+        <input type="checkbox" id="checklist-checkbox" name="checklist-checkbox">
+        <label for="checklist-checkbox">Use checklist</label>
       </fieldset>
       <button type="submit" class="btn btn-purple">Submit</button>
     </form>
@@ -73,7 +73,6 @@
   </div>
 </div>
 
-</div>
 
 {{>footer}}
 <script type="text/javascript" charset="utf-8">
