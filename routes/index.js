@@ -38,19 +38,20 @@ router.get('/welcome', (req, res) => {
 router.post('/login', passport.authenticate('local'), (req, res) => {
   // res.redirect('/app');
   res.json({success: true, redirect: '/app'});
+
 });
 
 router.post('/register', (req, res, next) => {
   logger.debug('Registering user...');
   if(!req.body.username || !req.body.password || !req.body.confirmPassword) {
-    return res.json(h.fail('Missing one or more form fields'));
+    return res.json(h.fail('Missing one or more form fields.'));
   } else if(req.body.password !== req.body.confirmPassword) {
-    return res.json(h.fail('Passwords don\'t match'));
+    return res.json(h.fail('Passwords don\'t match.'));
   }
   User.register(new User({username: req.body.username}), req.body.password, err => {
     if(err) {
       if(err.name === 'UserExistsError') {
-        return res.json(h.fail('Username is taken'));
+        return res.json(h.fail('Username is taken.'));
       }
       logger.error('Error registering user: ', err);
       return next(err);

@@ -2,6 +2,7 @@ $(function() {
   $('#register-form').submit(function(evt) {
     evt.preventDefault();
     $('#register-warning').hide();
+    $('#register-success').hide();
 
     $.post({
       url: '/register',
@@ -23,6 +24,7 @@ $(function() {
   $('#login-form').submit(function(evt) {
     evt.preventDefault();
     $('#login-warning').hide();
+    $('#login-success').hide();
 
     $.post({
       url: '/login',
@@ -39,6 +41,7 @@ $(function() {
       console.error('Failed:', err);
       if(err.status === 401) {
         $('#login-warning').text('Incorrect username or password.').show();
+        $('#log-in-password-input').val('');
       }
     });
   });

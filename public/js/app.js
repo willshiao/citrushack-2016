@@ -51,6 +51,8 @@ $(function() {
     socket.emit('room:join', {
       roomId: $('#room-id-input').val()
     });
+    $('#room-id-input').val('');
+    $('#room-name-input').val('');
   });
 
   $('#create-room-form').submit(function(evt) {
@@ -58,6 +60,10 @@ $(function() {
     socket.emit('room:create', {
       roomName: $('#room-name-input').val(),
     });
+    $('#room-id-input').val('');
+    $('#room-id-input').blur();
+    $('#room-name-input').val('');
+    $('#room-name-input').blur();
   });
 
   $('#chat-form').submit(function(evt) {
@@ -116,6 +122,10 @@ socket.on('task:removed', function(data) {
 socket.on('task:new:res', data => {
   if(!data.success) return console.error(data.message);
   console.log('Added new task successfully');
+  $('#task-name-input').val('');
+  $('#task-name-input').blur();
+  $('#task-description').val('');
+  $('#task-description').blur();
 });
 
 socket.on('task:get:res', function(tasks) {
@@ -162,6 +172,8 @@ function addChatMessage(user, message) {
   '</div>';
   $('#messages').append(el);
   $('#messages').scrollTop(10000);
+  $('#chat-text').val('');
+  $('#chat-text').blur();
 }
 
 function makeTaskElement(task) {
