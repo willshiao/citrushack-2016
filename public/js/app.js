@@ -56,6 +56,20 @@ $(function() {
       roomName: $('#room-name-input').val(),
     });
   });
+
+  $('#chat-form').submit(function(evt) {
+    evt.preventDefault();
+    console.log('Sending chat message...');
+    socket.emit('chat:message', $('#chat-text').val());
+  });
+  $(document).on('click', '#chat-panel .dropdown-menu', function (e) {
+    e.stopPropagation();
+  });
+});
+
+socket.on('chat:message', function(user, msg) {
+  console.log('Received chat message:', msg);
+  addChatMessage(user, msg);
 });
 
 socket.on('room:create:res', function(data) {
@@ -82,7 +96,7 @@ socket.on('room:join:res', function(data) {
 
 socket.on('task:removed', function(data) {
   console.log(data.slug, ' was removed...');
-  $('#'+data.slug).remove();
+  $('#'+data.slug).fadeOut('fast');
 });
 
 socket.on('task:new:res', data => {
@@ -112,11 +126,23 @@ function clearTasks() {
   $('#tasks').html('');
 }
 
+function addChatMessage(user, message) {
+  var el = '<div class="card card-block col-xs-8';
+  if(user === username)
+    el += ' offset-xs-4';
+  el += '">\n' +
+    '<strong>' + user +': </strong>\n' +
+    escapeHtml(message) + '\n' +
+  '</div>';
+  $('#messages').append(el);
+  console.log('Scrolling...');
+  $('#messages').scrollTop(10000);
+}
+
 function makeTaskElement(task) {
   return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<button type="button" class="close close-btn">&times;</button>\n' +
-    '<button type="submit" class="btn btn-purple">Completed</button>\n' +
     '<div class="btn-group">\n' +
       '<button class="btn btn-purple dropdown-toggle" type="button" data-toggle="dropdown">Delegate</button>\n' +
       '<div class="dropdown-menu">\n' +

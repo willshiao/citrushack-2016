@@ -69,24 +69,23 @@
 
 
 
-<div class="btn-ground dropup"
-  <button type="button" class="btn btn-secondary data-toggle" datatoggle="dropdown"></button>
-  <div class="dropdown-menu">
-    div class="container">
-    <div class="card card-block col-xs-5 offset-xs-4" id="chat">
+<div class="btn-ground dropup" id="chat-panel">
+  <button type="button" class="btn btn-secondary" data-toggle="dropdown" id="open-chat-btn">Chat</button>
+  <div class="dropdown-menu" id="dropdown">
+    <div class="container">
+    <div class="card card-block col-xs-8 offset-xs-2" id="chat">
       <h4 class="card-title">Chat</h4>
       <hr class="m-y-2">
-      <div class="container">
-        <div class="card card-block col-xs-8"></div>
-        <div class="card card-block col-xs-8 offset-xs-4"></div>
-      </div>
+      <div class="container" id="messages"></div>
       <hr class="m-y-2">
-      <form class="row">
-        <div class="md-form col-xs-8">
+      <form class="row" id="chat-form">
+        <div class="md-form col-xs-8 offset-xs-1">
           <input type="text" id="chat-text" class="form-control" name="chatText">
           <label for="chat-text">Message</label>
         </div>
-      <button type="submit" class="btn btn-purple">Submit</button>
+        <div class="col-xs-2">
+          <button type="submit" class="btn btn-purple">Submit</button>
+        </div>
       </form>
     </div>
   </div>
@@ -95,4 +94,5 @@
 {{>footer}}
 <script type="text/javascript" charset="utf-8">
   var roomId = '{{roomId}}';
+  var username = '{{username}}';
 </script>
