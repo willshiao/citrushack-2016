@@ -7,6 +7,11 @@ socket.on('connect', function() {
 $(function() {
   $('#sortable').sortable();
   $('#sortable').disableSelection();
+  $('#tasks').sortable({
+    update: function(event, ui) {
+      socket.emit('task:reorder', $('#tasks').sortable('toArray'));
+    }
+  });
 
   socket.emit('task:get');
 
@@ -99,14 +104,14 @@ function clearTasks() {
 }
 
 function makeTaskElement(task) {
-  return '<div class="card card-block tasks">\n' +
+  return '<div class="card card-block tasks" id="' + task.slug + '">\n' +
     '<h4 class="card-title task-title">' + escapeHtml(task.name) + '</h4>\n' +
     '<p class="task-content">' + escapeHtml(task.content || '') + '</p>\n' +
     '</div>';
 }
 
 function makeChecklistElement(task) {
-  var el = '<div class="card card-block tasks">\n' +
+  var el = '<div class="card card-block tasks" id="' + task.slug + '">\n' +
       '<h4 class="card-title">' + escapeHtml(task.name) + '</h4>\n' +
       '<ul class="list-group" id="sortable" >';
   for(var i = 0; i < task.listItems; ++i) {
