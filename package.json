@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bluebird": "^3.4.6",
@@ -14,7 +16,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "express-session": "^1.14.1",
-    "hbs": "~4.0.0",
+    "hbs": "~4.1.1",
     "mongoose": "^4.6.4",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
@@ -24,7 +26,8 @@
     "serve-favicon": "~2.3.0",
     "shortid": "^2.2.6",
     "socket.io": "^1.5.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "snyk": "^1.317.0"
   },
   "description": "App to help delegate chores amongst roommates.",
   "main": "app.js",
@@ -43,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/willshiao/citrushack-2016/issues"
   },
-  "homepage": "https://github.com/willshiao/citrushack-2016#readme"
+  "homepage": "https://github.com/willshiao/citrushack-2016#readme",
+  "snyk": true
 }
